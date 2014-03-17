@@ -19,5 +19,10 @@ describe("cart total", function() {
     checkout.scan("Kiwi");
     expect(checkout.total()).toEqual(100);
   });
+
+  it("is 75 when Bananas are scanned", function() {
+    checkout.scan("Banana");
+    expect(checkout.total()).toEqual(75);
+  });
 });
 

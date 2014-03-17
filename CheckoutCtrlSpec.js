@@ -5,7 +5,7 @@ describe("checkout controller", function() {
   });
 
   it ("increments total on click of scan", function() {
-    controller.add();
+    controller.add("Kiwi");
     expect(controller.checkout.total()).toEqual(50);
   });
 });
