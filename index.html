@@ -2,6 +2,7 @@
 <html>
   <head>
     <script type="text/javascript" src="http://sukima.github.com/jasmine-all/jasmine-all-min.js"></script>
+    <script type="text/javascript" src="http://code.angularjs.org/1.2.9/angular.js"></script>
 
     <script>
       function Checkout() {
@@ -36,7 +37,21 @@
           expect(checkout.total()).toEqual(100);
         });
       });
+
+      function CheckoutCtrl() {
+        this.checkout = new Checkout;
+        this.add = function() {
+          this.checkout.scan();
+        }
+      }
+
     </script>
   </head>
+  <body ng-app>
+    <div ng-controller='CheckoutCtrl as app'>
+      Total: {{app.checkout.total()}}
+      <button ng-click='app.add("Kiwi")'>Add</button>
+    </div>
+  </body>
 </html>
 
