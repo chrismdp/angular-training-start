@@ -3,7 +3,6 @@
   <head>
     <script type="text/javascript" src="http://sukima.github.com/jasmine-all/jasmine-all-min.js"></script>
     <script type="text/javascript" src="http://code.angularjs.org/1.2.9/angular.js"></script>
-    <script type="text/javascript" src="http://code.angularjs.org/1.2.9/angular-mocks.js"></script>
 
     <script>
       function Checkout() {
@@ -49,9 +48,7 @@
       describe("checkout controller", function() {
         var controller;
         beforeEach(function() {
-          inject(function($rootScope, $controller) {
-            controller = $controller("CheckoutCtrl", {scope: $rootScope});
-          });
+          controller = new CheckoutCtrl();
         });
 
         it ("increments total on click of scan", function() {
