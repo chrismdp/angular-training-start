@@ -9,6 +9,9 @@
       function scan() { _total += 50; }
 
       describe("cart total", function() {
+        beforeEach(function() {
+          _total = 0;
+        });
         it("returns 0", function() {
           expect(total()).toEqual(0);
         });
@@ -16,6 +19,12 @@
         it("is 50 when a Kiwi is scanned", function() {
           scan("Kiwi");
           expect(total()).toEqual(50);
+        });
+
+        it("is 100 when two Kiwis are scanned", function() {
+          scan("Kiwi");
+          scan("Kiwi");
+          expect(total()).toEqual(100);
         });
       });
     </script>
