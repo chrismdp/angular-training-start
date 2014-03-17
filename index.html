@@ -3,6 +3,7 @@
   <head>
     <script type="text/javascript" src="http://sukima.github.com/jasmine-all/jasmine-all-min.js"></script>
     <script type="text/javascript" src="http://code.angularjs.org/1.2.9/angular.js"></script>
+    <script type="text/javascript" src="http://code.angularjs.org/1.2.9/angular-mocks.js"></script>
 
     <script>
       function Checkout() {
@@ -44,6 +45,20 @@
           this.checkout.scan();
         }
       }
+
+      describe("checkout controller", function() {
+        var controller;
+        beforeEach(function() {
+          inject(function($rootScope, $controller) {
+            controller = $controller("CheckoutCtrl", {scope: $rootScope});
+          });
+        });
+
+        it ("increments total on click of scan", function() {
+          controller.add();
+          expect(controller.checkout.total()).toEqual(50);
+        });
+      });
 
     </script>
   </head>
