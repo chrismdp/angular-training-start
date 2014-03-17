@@ -1,6 +1,6 @@
 function PriceList() {
   this.prices = {
-    "Kiwi": 500,
+    "Kiwi": 50,
     "Banana": 75
   };
 
@@ -9,8 +9,8 @@ function PriceList() {
   }
 };
 
-function Checkout() {
-  this.priceList = new PriceList;
+function Checkout(PriceList) {
+  this.priceList = PriceList;
   this._total = 0;
 
   this.total = function() {
