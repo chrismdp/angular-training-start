@@ -5,7 +5,11 @@ function Checkout(PriceList) {
   this.total = function() {
     return this._total;
   };
+
   this.scan = function(item) {
-    this._total += this.priceList.priceFor(item);
+    var checkout = this;
+    this.priceList.priceFor(item).then(function(price) {
+      checkout._total += parseInt(price);
+    });
   };
 };
