@@ -1,10 +1,9 @@
 describe("cart total", function() {
-  var checkout;
+  var checkout, priceList;
 
   beforeEach(function() {
-    priceList = {
-      priceFor: function() { return 25; }
-    }
+    priceList = jasmine.createSpyObj("priceList", ["priceFor"]);
+    priceList.priceFor.andReturn(25);
     checkout = new Checkout(priceList);
   });
 
@@ -12,15 +11,20 @@ describe("cart total", function() {
     expect(checkout.total()).toEqual(0);
   });
 
-  it("it adds the price of an item", function() {
+  it("adds the price of an item", function() {
     checkout.scan("Kiwi");
     expect(checkout.total()).toEqual(25);
   });
 
-  it("it continues to add the price", function() {
+  it("continues to add the price", function() {
     checkout.scan("Kiwi");
     checkout.scan("Kiwi");
     expect(checkout.total()).toEqual(50);
+  });
+
+  it ("passes the item through", function() {
+    checkout.scan("Kiwi");
+    expect(priceList.priceFor).toHaveBeenCalledWith("Kiwi");
   });
 });
 
